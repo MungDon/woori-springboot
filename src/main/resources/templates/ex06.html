@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>선택 변수 표현식</h2>
+	<div th:object="${session.user}">
+		<p>name : <span th:text="*{name}"></span></p>
+		<p>age 	: <span th:text="*{age}"></span></p>
+	</div>
+	- th:object<br>
+	 	-> 타입리프의 변수 선언 속성<br>
+	 	-> 적용된 태그 내부에서만 사용 가능하다<br> 
+	- th:object="${session.user}<br>
+	 	-> div 태그 내에서만 사용 가능한 지역변수로 session 에 저장된 user 를<br> 
+	 		지역변수로 선언	<br>
+	- th:text="*{name}"<br>
+		-> 변수로 저장된 user 의 getName() 메서드 사용.<br>
+	- th:text="*{age}"<br>
+		-> 변수로 저장된 user 의 getAge() 메서드 사용.<br>
+<h2>변수 표현식</h2>	
+	<div>
+		<p>name : <span th:text="${session.user.name}"></span></p>
+		<p>age 	: <span th:text="${session.user.age}"></span></p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	링크 표현식
+	<a href="https://naver.com">naver</a>
+	<p><a th:href="@{https://naver.com}" th:text="naver"></a></p>
+		- 다른사이트로 이동시 사용
+	<p><a th:href="@{/th/main}" th:text="main"></a></p>
+		- 기본 URL 설정방법
+	<p><a th:href="@{|/th/${data}|}" th:text="main"></a></p>
+		- URL 에 변수표현식 사용시에 앞뒤로 파이프 바 필요
+	<p><a th:href="@{main?id=java&pw=1234}" th:text="main"></a></p>
+		- URL에 파라미터를 설정하는 기본방식
+	<p><a th:href="@{/th/{kkk}(kkk=${data})}" th:text="main"></a></p>
+		- URL의 {kkk} 부분에 대입할 변수 를 처리하는 방식
+	<p><a th:href="@{/th/{kkk}(kkk=${data}, id=${'java'})}" th:text="main"></a></p>
+		- URL 부분의 {kkk} 부분을(kkk=${data})이것으로 값이   대입이되며
+		- id=${'java'} 부분을 파라미터로 적용된다.
+	<p><a th:href="@{/{k1}/{k2}(k1=${'th'}, k2=${data}, id=${'java'})}" th:text="main"></a></p>
+		- {k1} =>(k1=${'th'}),{k2} =>(k2=${data}) 를넣고  ?id=java 식으로 파라미터를 넘김
+</body>
+</html>

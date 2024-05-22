@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>세션사용</h3>
+	<h1 th:text="${session.sid}"></h1>
+	<h1 th:text="'세션 = '+${session.sid}"></h1>
+	
+	세션 sid 값을 확인 = [[${session.sid}]]<br>
+	
+	세션 저장된 개수 = [[${session.size()}]]<br>
+	
+	세션 비어있는지 확인 = [[${session.isEmpty()}]]<br>
+	
+	특정 세션키 sid 있는지 확인 = [[${session.containsKey('sid')}]]<br>
+	
+	- 변수 표현식을 th:text 와 같은 Thymeleaf 속성이외에 
+		단순 사용시 [[${session.sid}]] 대괄호로 묶어줘야한다
+		
+	
+	
+</body>
+</html>

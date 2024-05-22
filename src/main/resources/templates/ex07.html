@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>프레그먼트 표현식</h2>
+	<div th:insert="~{main.html}"></div>
+	<div th:replace="~{main.html}"></div>
+	
+	<div th:insert="~{sub.html :: title}"></div>
+	<div th:insert="~{sub.html :: content}"></div>
+	<div th:insert="~{sub.html :: info('망그러진곰','010-1111-1234')}"></div>
+	<div th:insert="~{sub.html :: info('망그러진곰2','010-1234-1234')}"></div>
+	
+	- th:insert
+		태그내부에 삽입
+		div 태그 main.html
+	- th:replace
+		div 태그 대신 main.html 로대체
+	- th:insert="~{sub.html :: title}"
+		sub.html 의 th.fragment "title"
+	- th:insert="~{sub.html :: info('망그러진곰','010-1111-1234')}
+		sub.html 의 th:fragment"info('망그러진곰2','010-1234-1234')에 설정된 메서드의 매개변수로 보내고합친다
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>프레그먼트 표현식</h2>
+	<div th:fragment="title">제목입니다</div>
+	<div th:fragment="content">내용입니다</div>
+	<div th:fragment="info(name,tel)">
+		이름 : <span th:text="${name}"></span>,
+		연락처 : <span th:text="${tel}"></span>
+	</div>
+	
+	- th:fragment="title"
+		fragment 속성을 사용하여 title 이란 이름으로 설정
+		포함 시킬 페이지에서 title 이름 호출한다.
+	- th:fragment="content"
+		fragment 속성을 사용하여 title 이란 이름으로 설정
+		포함 시킬 페이지에서 content 이름 호출한다.
+	- th:fragment="info(name,tel)"
+		자바 메서드처럼 사용가능
+		각각 ${name}${tel}에 적용된다. 
+</body>
+</html>
