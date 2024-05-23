@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>th:attr 속성 활용</h3>
+	<p>여러 속성을 한번에 설정</p>
+	
+	<a th:href="@{/th/main}" th:title="${'my page'}">Main</a>
+	<br/>
+	<a th:attr="href=@{/th/main}, title=${'my page'}">Main</a>
+</body>
+</html>

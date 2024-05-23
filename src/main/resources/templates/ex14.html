@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>th:src 속성사용</h3>
+	<p> 이미지 태그 src 속성 활용</p>
+	<img th:src="@{/img/java.png}"/><br>
+	<img th:src="@{|/img/${img}|}"/><br>
+	<p> @{} 안에서 ${} 사용시 반드시 | 파이프바 로 감싸주어야한다</p>
+</body>
+</html>

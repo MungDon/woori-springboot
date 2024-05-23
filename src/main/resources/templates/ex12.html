@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>반복문</h3>
+	
+	<div th:each="str : ${list}">
+		<span th:text="${str}"></span>
+	</div>
+	<h3>th:each="str : ${list}"</h3>
+	<p>forEach문 구조,</p>
+	<p>"변수 : 반복대상" => 기본구조</p>
+	
+	
+	<hr color="skyblue">
+	
+	<table border="1">
+		<tr th:each="str, loop:${list}">
+			<td th:text="${loop.count}"></td>
+			<td th:text="${str}"></td>
+		</tr>
+	</table>
+	
+	<h3>th:each="str, loop:${list}"</h3>
+	<p>loop 는 반복문의 속성을 가진 변수</p>
+	<p>loop 의 이름은 사용자지정이다</p>
+	<h3>반복문의 속성</h3>
+	<p>loop.index 	: loop 의 순서(반복순서 , 0부터 1씩 증가)</p>
+	<p>loop.count 	: loop 의 순서(반복순서 , 1부터 1씩 증가)</p>
+	<p>loop.size  	: 반복하는 객체의 요소 개수(ex)list 의 요소개수)</p>
+	<p>loop.first 	: loop 의 첫번째 순서인 경우 true</p>
+	<p>loop.last  	: loop 의 마지막 순서인 경우 true</p>
+	<p>loop.odd   	: loop 의 홀수번째 순서인 경우 true</p>
+	<p>loop.even  	: loop 의 짝수번째 순서인 경우 true</p>
+	<p>loop.current	: 현재 대입된 객체</p>
+
+
+	<hr color="skyblue">
+	
+	<table border="1">
+		<tr>
+			<th>번호</th>
+			<th>이름</th>
+			<th>나이</th>
+		</tr>
+		<tr th:each="user, i : ${userList}">
+			<td th:text="${i.count}"></td>
+			<td th:text="${user.name}"></td>
+			<td th:text="${user.age}"></td>
+		</tr>
+	</table>
+</body>
+</html>
