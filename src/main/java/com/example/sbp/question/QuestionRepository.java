@@ -17,6 +17,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer> {
 	List<Question> findBySubjectLike(String subject);
 	
 	
+	
 	//And       	findBySubjectAndContent    		… where subject = ? and content = ?
 	//Or			 	findBySubjectOrContent    		… where subject = ? or content = ?
 	//Between	findByCreateDateBetween(LocalDateTime from Date, LocalDateTime toDate) … where CreateDate between ? and ?
