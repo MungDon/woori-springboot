@@ -1,24 +1,30 @@
 package com.example.sbp;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.List;
-import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.example.sbp.answer.Answer;
-import com.example.sbp.answer.AnswerRepository;
-import com.example.sbp.question.Question;
-import com.example.sbp.question.QuestionRepository;
+import com.example.sbp.question.QuestionService;
 
 @SpringBootTest
 class SbpApplicationTests {
-
+	
+	@Autowired
+	private QuestionService questionService;
+	
+	@Test
+	void testJpa() {
+		for(int i=1; i<=300; i++) {
+			String subject = String.format("테스트 데이터 : [%03d]",i);
+			String content = "풉 ㅋ";
+			this.questionService.create(subject, content);
+		}
+	}
+	
+	
+	
+	
+/*
 	@Autowired
 	private QuestionRepository questionRepository;
 

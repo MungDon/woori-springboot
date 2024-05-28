@@ -9,7 +9,7 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 </head>
 <body>
 	<div layout:fragment="content" class="container my-3">
-		<table class="table">
+		<table class="table" >
 		<thead class="table-dark">
 			<tr>
 				<th>번호</th>
@@ -18,15 +18,65 @@ xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:each="question, loop : ${questionList}">
-				<td th:text="${loop.count}"></td>
+			<tr th:each="question, loop : ${paging}">
+				<td th:text="${paging.getTotalElements - (paging.number * paging.size) - loop.index}"></td>
 				<td>
 					<a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a>
+					<span class="text-danger small ms-2"
+						th:if="${#lists.size(question.answerList) > 0}"
+						th:text="${#lists.size(question.answerList)}"></span>
 				</td>
 				<td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd  HH:mm')}"></td>
 			</tr>
 		</tbody>
 		</table>
+		
+		<!-- 페이징 시작-->
+		<div th:if="${!paging.isEmpty()}">
+			<ul class="pagination justify-content-center">
+				<li class="page-item" th:classappend="${!paging.hasPrevious} ? 'disabled'">
+					<a class="page-link" th:href="@{|?page=${paging.number-1}|}"><span>이전</span></a>				
+				</li>
+				<li th:each="page : ${#numbers.sequence(0,paging.totalPages-1)}" 
+				th:if="${page >= paging.number-5 and page <= paging.number+5}"
+				th:classappend="${page == paging.number} ? 'active'" class="page-item" >
+					<a th:href="@{|?page=${page}|}" th:text="${page}" class="page-link"></a>
+				</li>
+				<li class="page-item" th:classappend="${!paging.hasNext} ? 'disabled'">
+					<a class="page-link" th:href="@{|?page=${paging.number+1}|}"><span>다음</span></a>					
+				</li>
+			</ul>
+		</div>
+		<!-- 페이징 끝 -->
+						
+		<a th:href="@{/question/create}" class="btn btn-primary">질문 등록</a>
 	</div>
 </body>
 </html>
+<!-- 
+		Page 클래스가 가지고있는 속성들
+	속성			설명
+	paging.isEmpty		페이지의 존재 여부(있으면 true/없으면 false)
+	paging.totalElements	전체 게시물을 의미
+	paging.size		전체 개수
+	paging.number		현재 페이지 번호
+	paging.hasPrevious		이전 페이지 존재 여부
+	paging.hasNext		다음 페이지의 존재 여부
+		
+	th:classappend="${!paging.hasPrevious} ? 'disabled'" 
+	 th:classappend="${!paging.hasNext} ? 'disabled'
+	 th:classappend="${page == paging.number} ? 'active'"
+	 => 				여기가 참일때 			여기가 발동 유사 옵셔널체이닝
+	 
+	 th:href="@{|?page=${paging.number+1}|}" => 현재페이지에서 1씩 증가
+	 th:href="@{|?page=${paging.number-1}|}" => 현재페이지에서 1씩 감소	
+	 th:href="@{|?page=${page}|}"			 => 현재페이지 보여주기
+	 
+	 * 공식 만들기
+	 	게시물 번호 = 전체 게시물 수 -(현재페이지 * 페이지당 게시물 수) - 나열할 인덱스
+	 	게시물 번호		:	최총 표시될 게시물 번호
+	 	전체 게시물 수 	:	데이터 베이스에 저장된 게시물 전체 개수
+	 	현재 페이지		:	페이징에서 현재 선택한 페이지
+		페이지당 게시물 수 	: 	한페이지에서 보여줄 게시물 수
+		나열 인덱스		:	10개를 표시한다 - 0~9 , 2개를 표시한다 0~1 
+-->
