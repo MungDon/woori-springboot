@@ -12,7 +12,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,7 +27,7 @@ public class Question {
    @Column(length = 200)
    private String subject;
    
-   @Column(columnDefinition = "TEXT")
+   @Column(columnDefinition = "LONGTEXT")
    private String content;
    
    private LocalDateTime createDate;
