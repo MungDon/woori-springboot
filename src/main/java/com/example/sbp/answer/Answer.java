@@ -1,14 +1,17 @@
 package com.example.sbp.answer;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import com.example.sbp.question.Question;
+import com.example.sbp.user.SiteUser;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,6 +20,15 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Answer {
+	
+	@ManyToMany
+	Set<SiteUser> voter; // 추천
+	
+	@ManyToOne
+	private SiteUser author;
+	
+	private LocalDateTime modifyDate;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
